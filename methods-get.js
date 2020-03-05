@@ -159,9 +159,9 @@ function get_send_userId(i){
   return message;
 }   
 
-  
-        
-        
+
+
+
 function getUserDisplayName(user_id, CHANNEL_ACCESS_TOKEN) {
   var line_endpoint_profile = 'https://api.line.me/v2/bot/profile';
   var res = UrlFetchApp.fetch(line_endpoint_profile + '/' + user_id, {
@@ -172,7 +172,8 @@ function getUserDisplayName(user_id, CHANNEL_ACCESS_TOKEN) {
     'method': 'get',
   });
   var h = JSON.parse(res).displayName;
-  //outputLog(h);
+ 
+//outputLog(h);
   return h;
 }
 

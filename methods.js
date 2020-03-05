@@ -1,33 +1,3 @@
-//function test(){
-//     outputLog("start");
-//      var userId = "U2012df34792adf4ce94b2b36d669bd59";
-//      notify_enter = get_notify_enter(userId);/////////////入室時の通知
-//      if(notify_enter === "true"){
-////       m1 = make_list_notify();    来た人と在室している人
-//         m1 = get_fool_name(userId) + "\nが入室しました"     ///来た人のみ
-//         set_notify_enter_false(userId);
-//            
-//        
-//         count_all_userId = get_count_all_userId(); 
-//             outputLog(count_all_userId);
-//        for(var i=0; i<count_all_userId.length; i++){  
-//          push1(CHANNEL_ACCESS_TOKEN, get_send_userId(i), m1);
-//        }
-//      }
-//        
-//        
-//      }
-
-
-
-
-
-
-
-
-
-
-
 function send_exist_room(){
      outputLog("start");
     push_exist_room();
@@ -39,11 +9,11 @@ function send_exist_room(){
 
 
 
- function oruka(reply_token){
+function oruka(reply_token){
+  outputLog("oruka すたーと");
    ///////////////////////////////////////////send_listのsend_trueを全部falseにする
    Send_list = ncmb.DataStore("send_list");
    try{
-    //  outputLog("try");
     var items = Send_list.fetchAll();
     for(var i=0; i<items.length; i++ ){
         var item = items[i];
@@ -56,10 +26,6 @@ function send_exist_room(){
    
    
    set_uzai();//なんか知らんけどレコードの一番下のexistの値に勝手にtrueが入るから強制的にfalseを入れる
-   
-   
-   
-   
    
    
    ///////////arpの方のexsit==trueのuserIdをsend_listに代入
@@ -85,7 +51,6 @@ function send_exist_room(){
      var message = "@Y-lab.";
      Send_list = ncmb.DataStore("send_list");
         Send_list.equalTo("send_true","true")
-//                 .equalTo("notify","true" )
         var items = Send_list.fetchAll();
    
    
@@ -97,11 +62,10 @@ function send_exist_room(){
         message += "\n" + items[i].fields.send_name;       
         }
                
-     //    var m1 = JSON.stringify(push_message_ylab);
   var url = 'https://api.line.me/v2/bot/message/push';
   reply1(CHANNEL_ACCESS_TOKEN, reply_token, message);
  
-//  "U2012df34792adf4ce94b2b36d669bd59",
+
 }        
 
 
@@ -116,14 +80,12 @@ try{
   Person.equalTo("exist_room","true")
   var items = Person.fetchAll();
   for(var i=0; i<items.length; i++){
-//    if(items[i].fields.userId !== "U2012df34792adf4ce94b2b36d669bd59"){
-      if(items[i].fields.hwid == "012c669b82"){
+      if(items[i].fields.hwid == hwid_lab){
         reply_message_ylab += "\n" + items[i].fields.display_name;
       }
-      if(items[i].fields.hwid == "000002b868"){
+      if(items[i].fields.hwid == hwid_home){
         reply_message_house += "\n" + items[i].fields.display_name;
       }
-//    }
   }
   m1 = reply_message_ylab;
   m2 = reply_message_house;
@@ -135,7 +97,7 @@ try{
    return;
  }
     
-//  "U2012df34792adf4ce94b2b36d669bd59",
+
 }          
   
 function push_exist_room(){
@@ -147,7 +109,7 @@ try{
   Person.equalTo("exist_room","true")
   var items = Person.fetchAll();
   for(var i=0; i<items.length; i++){
-    if(items[i].fields.userId !== "U2012df34792adf4ce94b2b36d669bd59"){
+    if(items[i].fields.userId !== master_userId){
       if(items[i].fields.hwid == "012c669b82"){
         push_message_ylab += items[i].fields.display_name + '\n';
       }
@@ -159,14 +121,14 @@ try{
     var m1 = JSON.stringify(push_message_ylab);
     var m2 = JSON.stringify(push_message_house);
   var url = 'https://api.line.me/v2/bot/message/push';
-  var push_userId = "U2012df34792adf4ce94b2b36d669bd59";
+  var push_userId = master_userId;
   push2(CHANNEL_ACCESS_TOKEN,  m1, m2);
  }catch(e){
    outputLog(e);
    return;
  }
     
-//  "U2012df34792adf4ce94b2b36d669bd59",
+//  master_userId,
 }        
      
 
@@ -278,7 +240,7 @@ function reply3(CHANNEL_ACCESS_TOKEN, reply_token, m1, m2, m3){
         }
   
   function push1(CHANNEL_ACCESS_TOKEN, userId, m1){
-   push_userId = "U2012df34792adf4ce94b2b36d669bd59"
+   push_userId = master_userId
    var url = 'https://api.line.me/v2/bot/message/push';
     UrlFetchApp.fetch(url, {
     'headers': {
@@ -297,7 +259,7 @@ function reply3(CHANNEL_ACCESS_TOKEN, reply_token, m1, m2, m3){
         }
   
   function push2(CHANNEL_ACCESS_TOKEN, m1, m2){
-   push_userId = "U2012df34792adf4ce94b2b36d669bd59"
+   push_userId = master_userId
    var url = 'https://api.line.me/v2/bot/message/push';
     UrlFetchApp.fetch(url, {
     'headers': {

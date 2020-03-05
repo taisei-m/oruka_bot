@@ -1,9 +1,6 @@
-//linebotと繋ぐ
-var CHANNEL_ACCESS_TOKEN = 'qn7G7ooyPk14r+ccerwuokY/Eh44dbrCCh18x+sTowsK+FCIEE1wYQcCaZ3+a8+oPtlsgO6GooYWRM0LbLQy5IWajmvbMIioUoGG+Uar91mMNd+EW+q7hDVS29UjbTyBdMtBi1u4YInQO7+2q2B0VwdB04t89/1O/w1cDnyilFU='; 
-
-//spreadsheetsにjsonのログをとる
+//////spreadsheetsにjsonのログをとる
 function outputLog(data) {
-  var id = "1JqCp_y7eOn6e4QPlGbCXHIPnsrvU0EUE2-_-MFTmNXw";  
+  var id = spreadSheet_Id;
   var spreadSheet = SpreadsheetApp.openById(id);  
   var sheetName = "シート1";
   spreadSheet.getSheetByName(sheetName).appendRow(
@@ -12,36 +9,24 @@ function outputLog(data) {
 }
 
 
-
-//ニフクラの設定
-var application_key = "b472d2ab52ea8c125dd824e2f2da7a3804263d15dd8ae9c2abfab01546e2ca4c";
-var client_key = "1c6e63f8db4776114481fbc1129ab2cc59f3bf0e2faa1d0eb48e83be32cbf1d6";
-var ncmb = NCMB.init(application_key, client_key);
-var Test = ncmb.DataStore("test");
-var Master = ncmb.DataStore("master");
-var Person = ncmb.DataStore("person");
-var Send_list = ncmb.DataStore("send_list");
-var Person_log = ncmb.DataStore("person_log");
-var master = new Master();
-var person = new Person();
-var send_list = new Send_list();
-var person_log = new Person_log();
-
-
-
-
-
-
 //メインメソッド
 function doPost(e) {
- outputLog(JSON.stringify(e))
+  //////linebotと繋ぐ
+  CHANNEL_ACCESS_TOKEN = channel_access_token; //your_chennel_access_token
+  ///キーの代入
+  master_userId = MASTER_USERID;
+  hwid_home = HWID_HOME;
+  hwid_lab = HWID_LAB;
+  
+  ///前処理終わり。ここからスタート
+  outputLog(JSON.stringify(e))
   var json = JSON.parse(e.postData.contents);
   var reply_token = json.events[0].replyToken;
   var userId = json.events[0].source.userId;
   if (typeof reply_token === 'undefined') {
     return;
   } 
-    
+  
   
   var type = json.events[0].type;
   var reply_message;
@@ -63,47 +48,32 @@ function doPost(e) {
   var m3;
   var m4;
   
-    if(type == 'beacon'){ ///////////////////////////////////////////////////////////beacon
+  if(type == 'beacon'){ ///////////////////////////////////////////////////////////beacon
       
-     beacon_hwid = json.events[0].beacon.hwid;
-     display_name = getUserDisplayName(userId, CHANNEL_ACCESS_TOKEN);
+      beacon_hwid = json.events[0].beacon.hwid;
+      display_name = getUserDisplayName(userId, CHANNEL_ACCESS_TOKEN);
       set_beacon_data(beacon_hwid, userId, display_name);
       sleep = get_sleep(userId);
       set_beacon_data_log(beacon_hwid, userId, display_name); 
-//      push_userId = "U2012df34792adf4ce94b2b36d669bd59"
-      
-//      if(sleep == "false"){////////////////////////////////////beaconに反応したときに通知するかどうか
-//         reply_message = 'ビーコンに反応したよ';
-//         var url = 'https://api.line.me/v2/bot/message/reply';
-//         return reply1(CHANNEL_ACCESS_TOKEN, reply_token, reply_message);
-//      }
       
       
       var notify_enter = get_notify_enter(userId);/////////////入室通知を送っていいかどうか。トリガー定期実行で6時間ごとにtrueが入るようにしている
-           outputLog("notify_enter = " + notify_enter);
       var notify_send_list = get_notify_from_send_list(userId);
-           outputLog("notify_send_list = " + notify_send_list )
-           
-           
-      if (beacon_hwid == "000002b868"){
-        outputLog("hwid= "+ beacon_hwid);
-        var master_userId = "U2012df34792adf4ce94b2b36d669bd59";
+      
+      if (beacon_hwid == hwid_home){
            m2 = "@house \n" + get_fool_name(userId) + "\nが入室しました"     ///来た人のみ
-           outputLog(m2);
            push1(CHANNEL_ACCESS_TOKEN, master_userId, m2)
-      } else if(beacon_hwid = "012c669b82"){
-            outputLog("hwid= "+ beacon_hwid);
-            m1 = "@Y-lab.\n" + get_fool_name(userId) + "\nが入室しました"     ///来た人のみ
+      } else if(beacon_hwid = hwid_lab){
+           m1 = "@Y-lab.\n" + get_fool_name(userId) + "\nが入室しました"     ///来た人のみ
       }
            
       if(notify_enter === "true" && notify_send_list === "true"){
-        set_notify_enter_false(userId);//通知送ったらfalseにしてビーコンに反応する度に通知を送るのを防いでいる
+         set_notify_enter_false(userId);//通知送ったらfalseにしてビーコンに反応する度に通知を送るのを防いでいる
         
-        count_all_userId = get_count_all_userId(); //通知を受け取る設定にしている人のuserIdを取得する
-        outputLog(count_all_userId);
-        for(var i=0; i<count_all_userId.length; i++){  
-          push1(CHANNEL_ACCESS_TOKEN, get_send_userId(i), m1);          
-        }
+         count_all_userId = get_count_all_userId(); //通知を受け取る設定にしている人のuserIdを取得する
+         for(var i=0; i<count_all_userId.length; i++){  
+            push1(CHANNEL_ACCESS_TOKEN, get_send_userId(i), m1);          
+         }
       }
         
         
@@ -151,7 +121,6 @@ function doPost(e) {
       ////////////////////////////////////////隠し合言葉
       if(keyword == "おるか"){
          push1(CHANNEL_ACCESS_TOKEN, userId, "確認中...");
-        
          oruka(reply_token);
       } else if(keyword == "Oi" ){
          oruka_mas(reply_token);
@@ -159,10 +128,8 @@ function doPost(e) {
      ///////////////////////////////////////////通知設定 自分が入室したのを他の人に通知する
       } else if(keyword == "通知設定・自分の入室を伝える"){   
         var url = 'https://api.line.me/v2/bot/message/reply';
-        
         var m2 = "";
         var notify = get_notify(userId);
-        
             if(notify == "true"){
               m2 = "ONにすると、自分の入室を他の人に通知します\n\n現在の設定：ON";
             } else if(notify =="false") {
