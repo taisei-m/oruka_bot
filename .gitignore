@@ -1,3 +1,4 @@
+.gitignore
 #クラスプ
 .clasp.json
 appsscript.json
