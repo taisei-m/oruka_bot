@@ -90,14 +90,11 @@ function oruka_mas(reply_token) {
     m1 = reply_message_ylab;
     m2 = reply_message_house;
 
-
     reply2(CHANNEL_ACCESS_TOKEN, reply_token, m1, m2);
   } catch (e) {
     outputLog(e);
     return;
   }
-
-
 }
 
 function push_exist_room() {
@@ -110,10 +107,10 @@ function push_exist_room() {
     var items = Person.fetchAll();
     for (var i = 0; i < items.length; i++) {
       if (items[i].fields.userId !== master_userId) {
-        if (items[i].fields.hwid == "012c669b82") {
+        if (items[i].fields.hwid == hwid_lab) {
           push_message_ylab += items[i].fields.display_name + '\n';
         }
-        if (items[i].fields.hwid == "000002b868") {
+        if (items[i].fields.hwid == hwid_home) {
           push_message_house += items[i].fields.display_name + '\n';
         }
       }
@@ -127,10 +124,7 @@ function push_exist_room() {
     outputLog(e);
     return;
   }
-
-  //  master_userId,
 }
-
 
 function make_list_notify() {
   outputLog("method start")
@@ -141,16 +135,12 @@ function make_list_notify() {
   for (var i = 0; i < items.length; i++) {
     return_message += "\n" + items[i].fields.display_name;
   }
-  outputLog(return_message)
   return return_message;
 }
 
 
+
 function reply1(CHANNEL_ACCESS_TOKEN, reply_token, m1) {
-  // outputLog("methodstart");
-  // outputLog(CHANNEL_ACCESS_TOKEN);
-  // outputLog(m1);
-  // outputLog(reply_token);
   var url = 'https://api.line.me/v2/bot/message/reply';
   return UrlFetchApp.fetch(url, {
     'headers': {

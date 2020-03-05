@@ -37,7 +37,6 @@ function doPost(e) {
   var check_keyword; ////DBから持ってきたキーワード
   var wifi_paswd;
   var waiting_msg;
-  var reply_message;
   var reply_message_paswd;
   var reply_message_good;
   var notify_enter;
@@ -46,7 +45,6 @@ function doPost(e) {
   var m1;
   var m2;
   var m3;
-  var m4;
 
   if (type == 'beacon') { ///////////////////////////////////////////////////////////beacon
 
@@ -75,10 +73,6 @@ function doPost(e) {
         push1(CHANNEL_ACCESS_TOKEN, get_send_userId(i), m1);
       }
     }
-
-
-
-
 
 
 
