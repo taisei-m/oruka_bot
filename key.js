@@ -11,7 +11,7 @@ var application_key = "b472d2ab52ea8c125dd824e2f2da7a3804263d15dd8ae9c2abfab0154
 var client_key = "1c6e63f8db4776114481fbc1129ab2cc59f3bf0e2faa1d0eb48e83be32cbf1d6";
 
 ////共通変数定義
-var CHANNEL_ACCESS_TOKEN; 
+var CHANNEL_ACCESS_TOKEN;
 var master_userId;
 var hwid_home;
 var hwid_lab;
