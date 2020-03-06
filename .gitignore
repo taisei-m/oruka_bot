@@ -5,3 +5,4 @@
 #キー、トークン
 key.secret.js
 
+*.json
