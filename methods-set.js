@@ -98,6 +98,7 @@ function set_exist_room_false() {
 }
 
 
+
 function set_message_data(userId, display_name) {
   Person = ncmb.DataStore("person");
   try {

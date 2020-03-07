@@ -11,15 +11,15 @@ function outputLog(data) {
 
 //メインメソッド
 function doPost(e) {
+  outputLog(JSON.stringify(e))
   //////linebotと繋ぐ
   CHANNEL_ACCESS_TOKEN = channel_access_token; //your_chennel_access_token
   ///キーの代入
   master_userId = MASTER_USERID;
   hwid_home = HWID_HOME;
   hwid_lab = HWID_LAB;
-
+  
   ///前処理終わり。ここからスタート
-  outputLog(JSON.stringify(e))
   var json = JSON.parse(e.postData.contents);
   var reply_token = json.events[0].replyToken;
   var userId = json.events[0].source.userId;
