@@ -10,43 +10,6 @@ function send_exist_room() {
 
 
 function oruka(reply_token) {
-  outputLog("oruka すたーと");
-  ///////////////////////////////////////////send_listのsend_trueを全部falseにする
-  Send_list = ncmb.DataStore("send_list");
-  try {
-    var items = Send_list.fetchAll();
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      item.set("send_true", "false");
-      item.update();
-    }
-  } catch (e) {
-    outputLog("error oruka set_send_true_false" + e);
-  }
-
-
-  set_uzai(); //なんか知らんけどレコードの一番下のexistの値に勝手にtrueが入るから強制的にfalseを入れる
-
-
-  ///////////arpの方のexsit==trueのuserIdをsend_listに代入
-  Arp = ncmb.DataStore("arp");
-  Arp.equalTo("exist", "true")
-  var items = Arp.fetchAll();
-  for (var i = 0; i < items.length; i++) {
-    var userId_list = items[i].fields.userId;
-    set_send_true(userId_list);
-  }
-
-
-  ///////////personの方のexsit_room==trueのuserIdをsend_listに代入　
-  Person = ncmb.DataStore("person");
-  Person.equalTo("exist_room", "true")
-  var items = Person.fetchAll();
-  for (var i = 0; i < items.length; i++) {
-    var userId_list = items[i].fields.userId;
-    set_send_true(userId_list);
-  }
-
   //////////////////////////////send_listのsend_trueが人の名前を入れて送信
   var message = "@Y-lab.";
   Send_list = ncmb.DataStore("send_list");
