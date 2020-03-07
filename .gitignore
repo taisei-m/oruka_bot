@@ -3,6 +3,4 @@
 /appsscript.json
 
 #キー、トークン
-key.secret.js
-
-*.json
+/key.secret.js
