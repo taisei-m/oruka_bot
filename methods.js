@@ -10,62 +10,34 @@ function send_exist_room() {
 
 
 function oruka(reply_token) {
-  outputLog("oruka すたーと");
-  ///////////////////////////////////////////send_listのsend_trueを全部falseにする
-  Send_list = ncmb.DataStore("send_list");
-  try {
-    var items = Send_list.fetchAll();
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      item.set("send_true", "false");
-      item.update();
-    }
-  } catch (e) {
-    outputLog("error oruka set_send_true_false" + e);
-  }
-
-
-  set_uzai(); //なんか知らんけどレコードの一番下のexistの値に勝手にtrueが入るから強制的にfalseを入れる
-
-
-  ///////////arpの方のexsit==trueのuserIdをsend_listに代入
-  Arp = ncmb.DataStore("arp");
-  Arp.equalTo("exist", "true")
-  var items = Arp.fetchAll();
-  for (var i = 0; i < items.length; i++) {
-    var userId_list = items[i].fields.userId;
-    set_send_true(userId_list);
-  }
-
-
-  ///////////personの方のexsit_room==trueのuserIdをsend_listに代入　
-  Person = ncmb.DataStore("person");
-  Person.equalTo("exist_room", "true")
-  var items = Person.fetchAll();
-  for (var i = 0; i < items.length; i++) {
-    var userId_list = items[i].fields.userId;
-    set_send_true(userId_list);
-  }
-
   //////////////////////////////send_listのsend_trueが人の名前を入れて送信
-  var message = "@Y-lab.";
-  Send_list = ncmb.DataStore("send_list");
-  Send_list.equalTo("send_true", "true")
-  var items = Send_list.fetchAll();
+  var message = "@Y-lab.\n";
+  
+//  send_list = new Send_list();
+//  Send_list = ncmb.DataStore("send_list");
+//  Send_list.equalTo("send_true", "true")
+//  outputLog("pp");
+//  try{
+//  var items = Send_list.fetchAll();
+//  outputLog("p");
+//  outputLog(items);
+//  }catch(e){
+//    outputLog(e);
+//  }
+//
+//  if (items.length == 0) {
+//    message += "\n誰もいません"
+//  }
+//
+//  for (var i = 0; i < items.length; i++) {
+//    message += "\n" + items[i].fields.send_name;
+//  }
 
-
-  if (items.length == 0) {
-    message += "\n誰もいません"
-  }
-
-  for (var i = 0; i < items.length; i++) {
-    message += "\n" + items[i].fields.send_name;
-  }
-
+  var firebase_get = firestore.getDocument("exist/arp");
+  var arp_exist = firebase_get.fields.exist;
+  message += arp_exist;
   var url = 'https://api.line.me/v2/bot/message/push';
-  reply1(CHANNEL_ACCESS_TOKEN, reply_token, message);
-
-
+  reply1(CHANNEL_ACCESS_TOKEN, reply_token, message)
 }
 
 
@@ -90,7 +62,7 @@ function oruka_mas(reply_token) {
     m1 = reply_message_ylab;
     m2 = reply_message_house;
 
-    reply2(CHANNEL_ACCESS_TOKEN, reply_token, m1, m2);
+    reply2(channel_access_token, reply_token, m1, m2);
   } catch (e) {
     outputLog(e);
     return;

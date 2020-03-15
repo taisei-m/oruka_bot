@@ -27,3 +27,7 @@
 //var person = new Person();
 //var send_list = new Send_list();
 //var person_log = new Person_log();
+///////firebase
+//var email = "";
+//var key = "";
+//var firestore = FirestoreApp.getFirestore(email, key, projectId);
