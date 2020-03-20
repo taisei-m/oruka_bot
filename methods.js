@@ -6,36 +6,23 @@ function send_exist_room() {
   outputLog("delete");
 }
 
-
+function test() {
+  var date = new Date();
+  var time = Utilities.formatDate(date, 'Asia/Tokyo', 'MM/dd hh:mm')
+  debuglog(time);
+}
 
 
 function oruka(reply_token) {
   //////////////////////////////send_listのsend_trueが人の名前を入れて送信
   var message = "@Y-lab.\n";
-  
-//  send_list = new Send_list();
-//  Send_list = ncmb.DataStore("send_list");
-//  Send_list.equalTo("send_true", "true")
-//  outputLog("pp");
-//  try{
-//  var items = Send_list.fetchAll();
-//  outputLog("p");
-//  outputLog(items);
-//  }catch(e){
-//    outputLog(e);
-//  }
-//
-//  if (items.length == 0) {
-//    message += "\n誰もいません"
-//  }
-//
-//  for (var i = 0; i < items.length; i++) {
-//    message += "\n" + items[i].fields.send_name;
-//  }
-
   var firebase_get = firestore.getDocument("exist/arp");
-  var arp_exist = firebase_get.fields.exist;
-  message += arp_exist;
+  var arp_exist = firebase_get.fields.exist_hard;
+  if (arp_exist == "") {
+    message += "誰もいません";
+  } else {
+    message += arp_exist;
+  }
   var url = 'https://api.line.me/v2/bot/message/push';
   reply1(CHANNEL_ACCESS_TOKEN, reply_token, message)
 }

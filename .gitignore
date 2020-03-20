@@ -1,6 +1,6 @@
 #クラスプ
 /.clasp.json
 /appsscript.json
-
+/.clasp.json
 #キー、トークン
 /key.secret.js
