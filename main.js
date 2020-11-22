@@ -1,6 +1,8 @@
+var data = {
+  "name": "taiseisss"
+}
 
-var data = {"name": "taiseisss"}
-function gcp(){
+function gcp() {
   firestore.updateDocument("exist/arp", data)
 }
 //////spreadsheetsにjsonのログをとる
@@ -21,6 +23,15 @@ function userlog(data) {
   );
 }
 
+function userlog(data) {
+  var id = set_log_Id;
+  var spreadSheet = SpreadsheetApp.openById(id);
+  var sheetName = "シート1";
+  spreadSheet.getSheetByName(sheetName).appendRow(
+    [new Date(), data]
+  );
+}
+
 
 //メインメソッド
 function doPost(e) {
@@ -32,7 +43,7 @@ function doPost(e) {
   master_userId = MASTER_USERID;
   hwid_home = HWID_HOME;
   hwid_lab = HWID_LAB;
-  
+
   ///前処理終わり。ここからスタート
   var json = JSON.parse(e.postData.contents);
   var reply_token = json.events[0].replyToken;

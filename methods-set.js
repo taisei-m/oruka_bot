@@ -30,6 +30,7 @@ function set_send_false() {
 
 
 function set_notify_enter(userId, boolean) {
+<<<<<<< HEAD
     var search = firestore.query("person").where("userId", "==", userId).execute();
     var document_data = search[0].name.split('/');
     var document_name = document_data[6];
@@ -38,15 +39,31 @@ function set_notify_enter(userId, boolean) {
     data_update.setting.notify_enter = boolean;
   
     firestore.updateDocument("person/" + document_name, data_update);
+=======
+  var search = firestore.query("person").where("userId", "==", userId).execute();
+  var document_data = search[0].name.split('/');
+  var document_name = document_data[6];
+  var data_update = search[0].fields;
+  ////上書き処理
+  data_update.setting.notify_enter = boolean;
+
+  firestore.updateDocument("person/" + document_name, data_update);
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
 }
 
 
 
 
 function set_notify_enter_true(userId) {
+<<<<<<< HEAD
     var search = firestore.getDocuments("person");
     debuglog(JSON.stringify(search));
   for(var i = 0; i<search.length; i++){
+=======
+  var search = firestore.getDocuments("person");
+  debuglog(JSON.stringify(search));
+  for (var i = 0; i < search.length; i++) {
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
     var document_data = search[i].fields;
     var document_name = search[i].name.split('/')[6];
     ////上書き処理
@@ -100,8 +117,13 @@ function set_exist_room_false() {
 
 
 function create_account(type, userId, display_name) {
+<<<<<<< HEAD
     var search = firestore.query("person").where("userId", "==", userId).execute();
   if(search == ""){
+=======
+  var search = firestore.query("person").where("userId", "==", userId).execute();
+  if (search == "") {
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
     var data_new = {
       display_name: display_name,
       exist_arp: false,
@@ -114,7 +136,11 @@ function create_account(type, userId, display_name) {
         receive_notifications: true,
         send_notifications: true,
         check_connection: false,
+<<<<<<< HEAD
         notify_enter: true        
+=======
+        notify_enter: true
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
       }
     }
     firestore.createDocument("person", data_new);
@@ -124,7 +150,11 @@ function create_account(type, userId, display_name) {
     var data_update = search[0].fields;
     data_update.display_name = display_name;
     firestore.updateDocument("person/" + document_name, data_update);
+<<<<<<< HEAD
     }
+=======
+  }
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
 }
 
 
@@ -160,6 +190,7 @@ function set_sleep_log(userId, sleep) {
 }
 
 
+<<<<<<< HEAD
 
 
 function set_send_notification(userId, boolean) {
@@ -189,3 +220,32 @@ function set_receive_notification(userId, boolean) {
 }
 
 
+=======
+
+
+function set_send_notification(userId, boolean) {
+  var search = firestore.query("person").where("userId", "==", userId).execute();
+  debuglog(JSON.stringify(search));
+
+  var document_data = search[0].name.split('/');
+  var document_name = document_data[6];
+  var data_update = search[0].fields;
+  ////上書き処理
+  data_update.setting.send_notifications = boolean;
+
+  firestore.updateDocument("person/" + document_name, data_update);
+}
+
+
+function set_receive_notification(userId, boolean) {
+  var search = firestore.query("person").where("userId", "==", userId).execute();
+
+  var document_data = search[0].name.split('/');
+  var document_name = document_data[6];
+  var data_update = search[0].fields;
+  ////上書き処理
+  data_update.setting.receive_notifications = boolean;
+
+  firestore.updateDocument("person/" + document_name, data_update);
+}
+>>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
