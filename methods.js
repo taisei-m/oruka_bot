@@ -6,32 +6,22 @@ function send_exist_room() {
   outputLog("delete");
 }
 
-<<<<<<< HEAD
 function test(){
   var date = new Date();
   var time = Utilities.formatDate( date, 'Asia/Tokyo', 'MM/dd hh:mm')
-=======
-function test() {
-  var date = new Date();
-  var time = Utilities.formatDate(date, 'Asia/Tokyo', 'MM/dd hh:mm')
->>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
   debuglog(time);
 }
 
 
 function oruka(reply_token) {
   //////////////////////////////send_listのsend_trueが人の名前を入れて送信
-<<<<<<< HEAD
-  var message = "@Y-lab.\n";  
+  var message = "@Y-lab.";  
   var firebase_get = firestore.getDocument("exist/arp");
   var arp_exist = firebase_get.fields.exist_hard;
+  var arp_time = firebase_get.fields.arp_time;
+  message += "  " + Utilities.formatDate( arp_time, 'Asia/Tokyo', 'MM/dd/HH:mm') + "\n";
+  
   if(arp_exist == ""){
-=======
-  var message = "@Y-lab.\n";
-  var firebase_get = firestore.getDocument("exist/arp");
-  var arp_exist = firebase_get.fields.exist_hard;
-  if (arp_exist == "") {
->>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
     message += "誰もいません";
   } else {
     message += arp_exist;

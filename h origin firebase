@@ -1,0 +1,150 @@
+[33mcommit 9c32388abd422da89aae615061de4a7abe16da05[m[33m ([m[1;36mHEAD -> [m[1;32mfirebase[m[33m)[m
+Merge: 842c176 d57f339
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sun Nov 22 15:45:01 2020 +0900
+
+    pullせなpushできたんだからpullして調整した
+
+[33mcommit 842c176fc913f5f505222f3c6584bd6c3f8a9d6a[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sun Nov 22 15:35:11 2020 +0900
+
+    LineBeaconを研究室に置いた
+    
+    白いBeaconを研究室に置いたからそれに伴ってhwid_homeとか調整した
+
+[33mcommit d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3[m[33m ([m[1;31morigin/firebase[m[33m)[m
+Merge: 40c779d b3b1c84
+Author: taisei-m <49971298+taisei-m@users.noreply.github.com>
+Date:   Sat Mar 21 00:56:56 2020 +0900
+
+    Merge pull request #5 from taisei-m/dev
+    
+    beacon通知　firebaseに移行完了
+
+[33mcommit b3b1c84161973dc40c3667bdeb7a9b6000dd4afd[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 21 00:53:19 2020 +0900
+
+    beacon通知　firebaseに移行完了
+
+[33mcommit 40c779d2f33fae2c1009e81c246c16d4f26f31c6[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sun Mar 15 22:00:08 2020 +0900
+
+    GCP移行
+
+[33mcommit 598a1747decd7302f5977aebdccb46cd4d3c8ac4[m
+Merge: a68e821 4da3788
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sun Mar 15 21:55:08 2020 +0900
+
+    Merge branch 'dev' of https://github.com/taisei-m/oruka_bot into dev
+
+[33mcommit a68e821da8cfd55fbaca19f462c2be4f0c551e5b[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sun Mar 15 21:52:53 2020 +0900
+
+    GCPに移行
+
+[33mcommit 4da3788a3b674b3dcb76092baf20d803004addbd[m
+Merge: fef5979 7655f75
+Author: taisei-m <49971298+taisei-m@users.noreply.github.com>
+Date:   Sat Mar 7 20:03:01 2020 +0900
+
+    Merge pull request #4 from taisei-m/node
+    
+    orukaの一部をnodeに移行
+
+[33mcommit 7655f755c311b2f06a80cec730cbb12e935e8098[m[33m ([m[1;31morigin/node[m[33m, [m[1;31morigin/ncmb[m[33m, [m[1;32mnode[m[33m, [m[1;32mncmb[m[33m)[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 7 19:59:33 2020 +0900
+
+    orukaの一部をnodeに移行
+
+[33mcommit fef5979e2b74bf61767e56e31b136c1ea9100040[m
+Merge: 5eff908 d6dc132
+Author: taisei-m <49971298+taisei-m@users.noreply.github.com>
+Date:   Sat Mar 7 19:54:31 2020 +0900
+
+    Merge pull request #3 from taisei-m/node
+    
+    great
+
+[33mcommit d6dc1322165bbec4f700474d0ca24b76b3dff4e4[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 7 19:42:46 2020 +0900
+
+    orukaメソッドではDBの参照だけにした
+
+[33mcommit ab5859ee95444d3f72441dfd5b20aa3b181726be[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 7 00:18:37 2020 +0900
+
+    6 times
+
+[33mcommit 89345ebd6af144aadbd381f48a550156d049b3c0[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 7 00:16:54 2020 +0900
+
+    6 times
+
+[33mcommit 173052c4691a83f9a5bfccafef477ea6ecaa0f91[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Sat Mar 7 00:15:18 2020 +0900
+
+    5 times
+
+[33mcommit 5eff90842593a1de31c7138677b3580a25ed7517[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 03:08:02 2020 +0900
+
+    outputLog
+
+[33mcommit 1c91c923703df8393c8b04ad24e6bb6e49638e21[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:50:29 2020 +0900
+
+    rm cash
+
+[33mcommit 1ae587002ef8115413fd410decee7e15fb6d02e9[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:47:10 2020 +0900
+
+    ignoreファイル追加
+
+[33mcommit 358647e478f1ce80247986788aaf4f6dd9245f9f[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:41:14 2020 +0900
+
+    .ignoreもやってみた
+
+[33mcommit aba9f04a72da583e21ad389cd46a1177cd34cc4d[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:36:59 2020 +0900
+
+    your_Idとかに変えた
+
+[33mcommit dfe03071d10a6a509052c11c9c58df9140c88b55[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:30:34 2020 +0900
+
+    keyとファイルをignore
+
+[33mcommit 1f23c5086a660979a52c12d7b210eb4aaa62d6aa[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:14:20 2020 +0900
+
+    タブ　リファクタリング
+
+[33mcommit 96ee9b861127729837d1453aa7b0bf00d7bd0ddf[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Fri Mar 6 02:11:40 2020 +0900
+
+    keyとtokenを一つのファイルにまとめた
+
+[33mcommit 2de7dd9358e05d79000822372e81e1867fa7c3fb[m
+Author: Taisei Watanabe <yomichi.o.terasu.house@gmail.com>
+Date:   Tue Jan 28 18:15:48 2020 +0900
+
+    first commit

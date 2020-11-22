@@ -87,13 +87,8 @@ function get_wifi_paswd_by_hwid(id) {
 function get_count_all_userId() {
   const firebase_get = firestore.getDocuments("person");
   var send_list = [];
-<<<<<<< HEAD
   for (var i = 0; i<firebase_get.length; i++){   
     if(firebase_get[i].fields.setting.receive_notifications){
-=======
-  for (var i = 0; i < firebase_get.length; i++) {
-    if (firebase_get[i].fields.setting.receive_notifications) {
->>>>>>> d57f3392af3c8eb53e5c596cfcb37cac1fcf27a3
       send_list.push(firebase_get[i].fields.userId);
     }
   }
