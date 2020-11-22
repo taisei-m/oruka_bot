@@ -1,22 +1,14 @@
-function get_notify(id) {
-  Person = ncmb.DataStore("send_list");
-  Person.equalTo("userId", id)
-  var items = Person.fetchAll();
-  var item = items[0];
-  var result_hwid = item.fields.notify;
-  return result_hwid;
+function get_send(id) {
+  const firebase_get = firestore.query("person").where("userId", "==", id).execute();
+  var got_notify = firebase_get[0].fields.setting.send_notifications;
+  return got_notify;
 }
 
 
-
-
 function get_fool_name(id) {
-  Person = ncmb.DataStore("send_list");
-  Person.equalTo("userId", id)
-  var items = Person.fetchAll();
-  var item = items[0];
-  var result_hwid = item.fields.send_name;
-  return result_hwid;
+  const firebase_get = firestore.query("person").where("userId", "==", id).execute();
+  var got_notify = firebase_get[0].fields.display_name;
+  return got_notify;
 }
 
 function get_good_where(id) {
@@ -37,12 +29,17 @@ function get_hwid_by_userId(id) {
 }
 
 
-function get_send_push_notify(id) {
-  Person.equalTo("userId", id)
-  var items = Person.fetchAll();
-  var item = items[0];
-  var result_hwid = item.fields.send_push_notify;
-  return result_hwid;
+function get_receive(id) {
+  const firebase_get = firestore.query("person").where("userId", "==", id).execute();
+  var got_notify = firebase_get[0].fields.setting.receive_notifications;
+  return got_notify;
+}
+
+
+function get_send_notifications(id) {
+  const firebase_get = firestore.query("person").where("userId", "==", id).execute();
+  var got_notify = firebase_get[0].fields.setting.send_notifications;
+  return got_notify;
 }
 
 
@@ -86,24 +83,23 @@ function get_wifi_paswd_by_hwid(id) {
 }
 
 
-function get_notify_from_send_list(id) {
-  Person = ncmb.DataStore("send_list");
-  Person.equalTo("userId", id)
-  var items = Person.fetchAll();
-  var item = items[0];
-  var wrson = item.fields.notify;
-  return wrson;
 
+function get_count_all_userId() {
+  const firebase_get = firestore.getDocuments("person");
+  var send_list = [];
+  for (var i = 0; i<firebase_get.length; i++){   
+    if(firebase_get[i].fields.setting.receive_notifications){
+      send_list.push(firebase_get[i].fields.userId);
+    }
+  }
+  return send_list;
 }
 
 
 function get_notify_enter(id) {
-  Person = ncmb.DataStore("person");
-  Person.equalTo("userId", id)
-  var items = Person.fetchAll();
-  var item = items[0];
-  var wrson = item.fields.notify_enter;
-  return wrson;
+  const firebase_get = firestore.query("person").where("userId", "==", id).execute();
+  var got_notify_enter = firebase_get[0].fields.setting.notify_enter;
+  return got_notify_enter;
 }
 
 
@@ -127,18 +123,6 @@ function get_date(id) {
   var hour = Number((data[11]) + (data[12])) + 9;
   data_send = data[5] + data[6] + "/" + data[8] + data[9] + "/" + hour + ":" + data[14] + data[15];
   return data_send;
-}
-
-
-function get_count_all_userId() {
-  Person = ncmb.DataStore("person");
-  Person.equalTo("send_push_notify", "true")
-  var items = Person.fetchAll();
-  var recipient = [];
-  for (var i = 0; i < items.length; i++) {
-    recipient.push(items[i].fields.userId)
-  }
-  return recipient;
 }
 
 
